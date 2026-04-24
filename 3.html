@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>الصف الثالث الثانوي | Mr Ali Elnagar | مدرس اللغة الإنجليزية</title>
+    <meta name="description"
+        content="منصة الأستاذ علي النجار - شرح منهج اللغة الإنجليزية للصف الثالث الثانوي. شروحات مبسطة، مراجعات نهائية، وامتحانات إلكترونية." />
+    <meta name="author" content="الأستاذ علي النجار" />
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* نفس الـ CSS المستخدم في first-grade.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #1f2937;
+            direction: rtl;
+            transition: background-color 0.3s, color 0.2s;
+        }
+
+        body.dark-mode {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .main-header-wrapper {
+            background-color: rgba(17, 24, 39, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .video-card {
+            background-color: #1f2937;
+        }
+
+        body.dark-mode .video-info h3 {
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .video-info p {
+            color: #9ca3af;
+        }
+
+        body.dark-mode .back-to-home {
+            background-color: #374151;
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .back-to-home:hover {
+            background-color: #4b5563;
+        }
+
+        body.dark-mode .custom-footer {
+            background-color: #030712;
+        }
+
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loader-wrapper.loader-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            margin: 0 10px;
+        }
+
+        .loader svg {
+            width: 50px;
+            height: 50px;
+            animation: rotate 1.5s linear infinite;
+        }
+
+        .loader svg circle,
+        .loader svg rect,
+        .loader svg polygon {
+            fill: none;
+            stroke: #f5b042;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+
+        .loader svg circle {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: dash 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dash {
+            0% {
+                stroke-dashoffset: 200;
+            }
+            50% {
+                stroke-dashoffset: 50;
+            }
+            100% {
+                stroke-dashoffset: 200;
+            }
+        }
+
+        .main-header-wrapper {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(225, 29, 72, 0.2);
+        }
+
+        .main-header {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 55px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .theme-toggle-wrapper {
+            flex-shrink: 0;
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            border-radius: 60px;
+        }
+
+        .toggle-track {
+            width: 80px;
+            height: 40px;
+            background: linear-gradient(145deg, #2c3e66, #1a2a4a);
+            border-radius: 60px;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .toggle-track {
+            background: linear-gradient(145deg, #0f172a, #020617);
+        }
+
+        .toggle-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 60px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 200, 100, 0.3), transparent 70%);
+        }
+
+        body.dark-mode .toggle-glow {
+            background: radial-gradient(circle at 70% 50%, rgba(100, 150, 255, 0.3), transparent 70%);
+        }
+
+        .theme-toggle-btn:hover .toggle-glow {
+            opacity: 1;
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark-mode .toggle-thumb {
+            transform: translateX(-40px);
+        }
+
+        .toggle-thumb i {
+            position: absolute;
+            font-size: 18px;
+        }
+
+        .sun-icon {
+            color: #e6a017;
+            opacity: 1;
+        }
+
+        .moon-icon {
+            color: #4a6fa5;
+            opacity: 0;
+        }
+
+        body.dark-mode .sun-icon {
+            opacity: 0;
+        }
+
+        body.dark-mode .moon-icon {
+            opacity: 1;
+        }
+
+        .back-button-wrapper {
+            max-width: 1400px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #e11d48;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background-color: #be123c;
+            transform: translateX(-5px);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 30px auto 50px;
+            padding: 0 20px;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .text h1 {
+            font-size: 2.5rem;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .hero .text span {
+            color: #e11d48;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .grade-description {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-top: 15px;
+        }
+
+        body.dark-mode .grade-description {
+            color: #9ca3af;
+        }
+
+        .hero .image img {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header h2 i {
+            color: #e11d48;
+        }
+
+        .section-header p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        .videos-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            overflow: hidden;
+            background: #1a1a2e;
+            aspect-ratio: 16/9;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(225, 29, 72, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+
+        .video-card:hover .play-overlay {
+            width: 70px;
+            height: 70px;
+            background: #e11d48;
+        }
+
+        .play-overlay i {
+            color: white;
+            font-size: 24px;
+            margin-right: 4px;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+
+        .video-info p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .video-duration {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #e11d48;
+            font-weight: 500;
+        }
+
+        .custom-footer {
+            background-color: #111827;
+            color: #e5e7eb;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: #e5e7eb;
+            font-size: 28px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #f5b042;
+            transform: translateY(-3px);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #f5b042;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll-top-btn:hover {
+            transform: scale(1.1);
+            background: #e6a030;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn i {
+            font-size: 30px;
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            background: #20b859;
+        }
+
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .video-modal-content iframe,
+        .video-modal-content video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            background: #000;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero .text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .text span {
+                font-size: 1.2rem;
+            }
+
+            .hero .image img {
+                max-width: 200px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toggle-track {
+                width: 68px;
+                height: 34px;
+            }
+
+            .toggle-thumb {
+                width: 26px;
+                height: 26px;
+            }
+
+            body.dark-mode .toggle-thumb {
+                transform: translateX(-34px);
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader-wrapper">
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <circle r="32" cy="40" cx="40"></circle>
+            </svg>
+        </div>
+        <div class="loader triangle">
+            <svg viewBox="0 0 86 80">
+                <polygon points="43 8 79 72 7 72"></polygon>
+            </svg>
+        </div>
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <rect height="64" width="64" y="8" x="8"></rect>
+            </svg>
+        </div>
+    </div>
+
+    <div class="main-header-wrapper">
+        <header class="main-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://images.icon-icons.com/230/PNG/256/EnglishLanguage_Flag3_26071.png"
+                            alt="منصة الأستاذ علي النجار" />
+                    </a>
+                </div>
+                <div class="theme-toggle-wrapper">
+                    <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="تبديل الوضع الليلي والنهاري">
+                        <div class="toggle-track">
+                            <div class="toggle-glow"></div>
+                            <div class="toggle-thumb">
+                                <i class="fas fa-sun sun-icon"></i>
+                                <i class="fas fa-moon moon-icon"></i>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="back-button-wrapper">
+        <a href="index.html" class="back-to-home">
+            <i class="fas fa-arrow-right"></i>
+            <span>العودة للرئيسية</span>
+        </a>
+    </div>
+
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="scroll-top-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <a href="https://wa.me/2011292941562" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <section class="hero">
+        <div class="text">
+            <h1 class="animate__animated animate__fadeInRight">الصف الثالث الثانوي<br /><span>المراجعة النهائية - 2026</span>
+            </h1>
+            <p class="grade-description">اختر الفيديو الذي تريد مشاهدته من القائمة أدناه - استعداداً للثانوية العامة</p>
+        </div>
+        <div class="image">
+            <img src="https://res.cloudinary.com/dxi9blaqb/image/upload/v1777034529/5043_xwjrbn.png"
+                alt="الصف الثالث الثانوي" />
+        </div>
+    </section>
+
+    <section class="videos-section">
+        <div class="section-header">
+            <h2><i class="fas fa-video"></i> دروس الفيديو</h2>
+            <p>شروحات منهج اللغة الإنجليزية - الصف الثالث الثانوي</p>
+        </div>
+        <div class="videos-grid" id="videosGrid"></div>
+    </section>
+
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="close-modal" onclick="closeVideoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe id="videoIframe" src="" frameborder="0" allowfullscreen style="display: none;"></iframe>
+            <video id="videoElement" controls style="display: none;">
+                <source src="" type="video/mp4">
+                المتصفح لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+    </div>
+
+    <footer class="custom-footer"
+        style="background-image: url('https://res.cloudinary.com/dxi9blaqb/image/upload/v1777038068/%D8%AA%D9%86%D8%B2%D9%8A%D9%84_1_txja0n.jpg');">
+        <div class="social-icons">
+            <a href="https://www.youtube.com/@%D8%AF%D8%B1%D8%B3%D8%A7%D9%86%D8%AC%D9%84%D8%B4" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/1Dh2Bu3Zq1/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://tiktok.com/@alielnagar466" target="_blank"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <div class="footer-copyright">
+            © 2026 جميع الحقوق محفوظة - منصة الأستاذ علي النجار
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // قائمة الفيديوهات - الصف الثالث الثانوي
+        // ========================================
+        const videos = [
+            {
+                id: 1,
+                title: "Unit 1: Challenges",
+                description: "شرح الوحدة الأولى - قواعد ومفردات للثانوية العامة",
+                duration: "35 دقيقة",
+                source: "youtube",
+                videoId: "dQw4w9WgXcQ",
+                thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            },
+            {
+                id: 2,
+                title: "Unit 2: Progress",
+                description: "شرح الوحدة الثانية بالتفصيل مع الأمثلة",
+                duration: "32 دقيقة",
+                source: "direct",
+                videoUrl: "https://res.cloudinary.com/demo/video/upload/sample.mp4",
+                thumbnail: "https://placehold.co/640x360/e11d48/white?text=Unit+2"
+            },
+            {
+                id: 3,
+                title: "المراجعة النهائية",
+                description: "مراجعة شاملة للمنهج - أهم القواعد والأسئلة المتوقعة",
+                duration: "120 دقيقة",
+                source: "youtube",
+                videoId: "dQw4w9WgXcQ",
+                thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+            }
+        ];
+
+        function displayVideos() {
+            const grid = document.getElementById('videosGrid');
+            if (!grid) return;
+
+            grid.innerHTML = videos.map(video => {
+                let thumbnailUrl = video.thumbnail;
+                if (!thumbnailUrl && video.source === 'youtube') {
+                    thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`;
+                }
+                if (!thumbnailUrl) {
+                    thumbnailUrl = `https://placehold.co/640x360/e11d48/white?text=${encodeURIComponent(video.title)}`;
+                }
+
+                return `
+                    <div class="video-card" onclick='openVideo(${JSON.stringify(video)})'>
+                        <div class="video-thumbnail">
+                            <img src="${thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/640x360/e11d48/white?text=${encodeURIComponent(video.title)}'">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h3>${video.title}</h3>
+                            <p>${video.description}</p>
+                            <span class="video-duration"><i class="far fa-clock"></i> ${video.duration}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openVideo(video) {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoIframe');
+            const videoElement = document.getElementById('videoElement');
+
+            iframe.style.display = 'none';
+            videoElement.style.display = 'none';
+            iframe.src = '';
+            videoElement.src = '';
+
+            if (video.source === 'youtube') {
+                iframe.style.display = 'block';
+                iframe.src = `https://www.youtube.com/embed/${video.videoId}?autoplay=1&rel=0`;
+            } else if (video.source === 'direct') {
+                videoElement.style.display = 'block';
+                videoElement.src = video.videoUrl;
+                videoElement.load();
+                videoElement.play();
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoIframe');
+            const videoElement = document.getElementById('videoElement');
+
+            iframe.src = '';
+            videoElement.src = '';
+            modal.style.display = 'none';
+        }
+
+        document.getElementById('videoModal')?.addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        function hideLoader() {
+            const loader = document.getElementById("loader-wrapper");
+            if (loader) {
+                loader.classList.add("loader-hidden");
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 500);
+            }
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function () {
+                if (document.body.classList.contains('dark-mode')) {
+                    document.body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        }
+
+        window.addEventListener("load", () => {
+            hideLoader();
+            displayVideos();
+        });
+        setTimeout(hideLoader, 2000);
+
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && e.keyCode === 73) ||
+                (e.ctrlKey && e.shiftKey && e.keyCode === 67) || (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+
+</html>
