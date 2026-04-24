@@ -335,7 +335,7 @@ body.dark-mode .theme-toggle-btn:active .toggle-thumb {
 
 .stage-img-card img {
     display: block;
-    width: 180px;
+    width: 250px;
     transition: transform 0.3s ease;
 }
 
@@ -488,7 +488,7 @@ body.dark-mode .theme-toggle-btn:active .toggle-thumb {
     }
 
     .stage-img-card img {
-        width: 120px;
+        width: 180px;
     }
 }
 
@@ -514,7 +514,7 @@ body.dark-mode .theme-toggle-btn:active .toggle-thumb {
     }
 
     .stage-img-card img {
-        width: 100px;
+        width: 150px;
     }
 
     .scroll-top-btn {
